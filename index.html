@@ -1,0 +1,2073 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Frame — How to Use</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Oswald:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ── TOKENS: 60 (Bone) / 30 (Navy) / 10 (Red) ── */
+        :root {
+            /* Core Brand Colors */
+            --c-bone: #F0EEE9;
+            --c-white: #FFFFFF;
+            --c-gray-soft: #F9F8F6;
+
+            --c-navy: #0D2137;
+            --c-navy-hover: #163354;
+            --c-navy-mute: rgba(13, 33, 55, 0.6);
+
+            --c-red: #E63946;
+            --c-red-hover: #D92E3B;
+
+            --c-text-main: #121212;
+            --c-text-sec: #5A6670;
+            --c-text-btn: #FFFFFF;
+
+            --c-border: rgba(13, 33, 55, 0.12);
+            --c-border-h: rgba(13, 33, 55, 0.25);
+
+            /* Semantic/Universal Colors (Calibrated for Light Mode Contrast) */
+            --sem-success: #10B981;
+            --sem-success-bg: rgba(16, 185, 129, 0.15);
+
+            --pos-open-fg: #B45309;
+            /* Amber */
+            --pos-open-bg: rgba(217, 119, 6, 0.12);
+            --pos-build-fg: #1D4ED8;
+            /* Blue */
+            --pos-build-bg: rgba(37, 99, 235, 0.12);
+            --pos-turn-fg: #E63946;
+            /* Brand Red */
+            --pos-turn-bg: rgba(230, 57, 70, 0.12);
+            --pos-res-fg: #047857;
+            /* Emerald/Teal */
+            --pos-res-bg: rgba(16, 185, 129, 0.12);
+
+            /* Anatomy Highlight Colors */
+            --mk-cam-fg: #B45309;
+            --mk-cam-bg: rgba(217, 119, 6, 0.15);
+            --mk-char-fg: #047857;
+            --mk-char-bg: rgba(16, 185, 129, 0.15);
+            --mk-act-fg: #1D4ED8;
+            --mk-act-bg: rgba(37, 99, 235, 0.15);
+            --mk-move-fg: #C2410C;
+            --mk-move-bg: rgba(234, 88, 12, 0.15);
+            --mk-light-fg: #4D7C0F;
+            --mk-light-bg: rgba(101, 163, 13, 0.15);
+            --mk-grade-fg: #7E22CE;
+            --mk-grade-bg: rgba(147, 51, 234, 0.15);
+
+            /* Typography & Shadows */
+            --f-head: 'Oswald', sans-serif;
+            --f-body: 'Inter', sans-serif;
+
+            --shadow-sm: 0 2px 4px rgba(13, 33, 55, 0.03);
+            --shadow-md: 0 8px 24px rgba(13, 33, 55, 0.06);
+            --shadow-focus: 0 0 0 3px rgba(13, 33, 55, 0.15);
+            --trans: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+            --r-sm: 6px;
+            --r-md: 12px;
+            --max: 820px;
+        }
+
+        /* ── DARK MODE INVERSION ── */
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --c-bone: #0A1118;
+                --c-white: #111D2A;
+                --c-gray-soft: #1A2A3A;
+
+                --c-navy: #F0EEE9;
+                --c-navy-hover: #FFFFFF;
+                --c-navy-mute: rgba(240, 238, 233, 0.4);
+
+                --c-text-main: #F0EEE9;
+                --c-text-sec: #8D99A5;
+                --c-text-btn: #0A1118;
+
+                --c-border: rgba(255, 255, 255, 0.1);
+                --c-border-h: rgba(255, 255, 255, 0.25);
+
+                --shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.2);
+                --shadow-md: 0 8px 24px rgba(0, 0, 0, 0.4);
+                --shadow-focus: 0 0 0 3px rgba(240, 238, 233, 0.15);
+
+                /* Semantic Colors Adjusted for Dark Mode Legibility */
+                --sem-success: #34D399;
+                --sem-success-bg: rgba(52, 211, 153, 0.15);
+
+                --pos-open-fg: #FBBF24;
+                --pos-open-bg: rgba(251, 191, 36, 0.15);
+                --pos-build-fg: #60A5FA;
+                --pos-build-bg: rgba(96, 165, 250, 0.15);
+                --pos-turn-fg: #F87171;
+                --pos-turn-bg: rgba(248, 113, 113, 0.15);
+                --pos-res-fg: #34D399;
+                --pos-res-bg: rgba(52, 211, 153, 0.15);
+
+                --mk-cam-fg: #FCD34D;
+                --mk-cam-bg: rgba(251, 191, 36, 0.15);
+                --mk-char-fg: #6EE7B7;
+                --mk-char-bg: rgba(52, 211, 153, 0.15);
+                --mk-act-fg: #93C5FD;
+                --mk-act-bg: rgba(96, 165, 250, 0.15);
+                --mk-move-fg: #FDBA74;
+                --mk-move-bg: rgba(251, 146, 60, 0.15);
+                --mk-light-fg: #BEF264;
+                --mk-light-bg: rgba(163, 230, 53, 0.15);
+                --mk-grade-fg: #D8B4FE;
+                --mk-grade-bg: rgba(192, 132, 252, 0.15);
+            }
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--c-bone);
+            color: var(--c-text-main);
+            font-family: var(--f-body);
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 1.7;
+            min-height: 100vh;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.88' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 0;
+            opacity: 0.6;
+            mix-blend-mode: multiply;
+        }
+
+        *:focus-visible {
+            outline: none;
+            box-shadow: var(--shadow-focus);
+        }
+
+        ::-webkit-scrollbar {
+            width: 5px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--c-navy-mute);
+            border-radius: 4px;
+        }
+
+        /* ── NAV ── */
+        nav {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            height: 60px;
+            background: var(--c-navy);
+            box-shadow: var(--shadow-md);
+            display: flex;
+            align-items: center;
+            padding: 0 32px;
+            gap: 24px;
+        }
+
+        .nav-logo {
+            font-family: var(--f-head);
+            font-size: 20px;
+            font-weight: 600;
+            text-transform: uppercase;
+            color: var(--c-text-btn);
+            flex-shrink: 0;
+            letter-spacing: 0.04em;
+        }
+
+        .nav-logo em {
+            font-style: normal;
+            color: var(--c-red);
+        }
+
+        .nav-sep {
+            width: 1px;
+            height: 20px;
+            background: rgba(255, 255, 255, 0.2);
+        }
+
+        .nav-tag {
+            font-family: var(--f-body);
+            font-size: 12px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            flex: 1;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 8px;
+        }
+
+        .nav-link {
+            font-size: 13px;
+            font-weight: 500;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 6px 14px;
+            border-radius: 20px;
+            border: 1px solid transparent;
+            cursor: pointer;
+            transition: var(--trans);
+            text-decoration: none;
+        }
+
+        .nav-link:hover {
+            color: var(--c-white);
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link.active {
+            color: var(--c-white);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ── LAYOUT & HERO ── */
+        .page {
+            position: relative;
+            z-index: 1;
+            max-width: var(--max);
+            margin: 0 auto;
+            padding: 4rem 2rem 6rem;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 5rem;
+        }
+
+        .hero-eyebrow {
+            font-family: var(--f-head);
+            font-size: 12px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--c-red);
+            margin-bottom: 16px;
+        }
+
+        .hero-title {
+            font-family: var(--f-head);
+            font-size: clamp(2.6rem, 6vw, 4.2rem);
+            font-weight: 500;
+            line-height: 1.1;
+            color: var(--c-navy);
+            text-transform: uppercase;
+            letter-spacing: 0.02em;
+            margin-bottom: 18px;
+        }
+
+        .hero-title em {
+            font-style: normal;
+            color: var(--c-red);
+        }
+
+        .hero-sub {
+            font-size: 16px;
+            color: var(--c-text-sec);
+            line-height: 1.7;
+            max-width: 560px;
+            margin: 0 auto 32px;
+        }
+
+        .hero-outcome {
+            display: inline-flex;
+            align-items: stretch;
+            gap: 16px;
+            background: var(--c-white);
+            border: 1px solid var(--c-border);
+            border-radius: var(--r-md);
+            padding: 20px 24px;
+            font-family: var(--f-body);
+            font-size: 14px;
+            color: var(--c-text-main);
+            line-height: 1.7;
+            text-align: left;
+            max-width: 600px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .outcome-bar {
+            width: 4px;
+            border-radius: 2px;
+            background: linear-gradient(180deg, var(--c-red), var(--c-navy));
+            flex-shrink: 0;
+        }
+
+        /* ── SECTION & DIVIDER ── */
+        .section {
+            margin-bottom: 4.5rem;
+        }
+
+        .section-eyebrow {
+            font-family: var(--f-head);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            color: var(--c-red);
+            margin-bottom: 8px;
+        }
+
+        .section-title {
+            font-family: var(--f-head);
+            font-size: 2.2rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--c-navy);
+            line-height: 1.15;
+            margin-bottom: 16px;
+        }
+
+        .section-title em {
+            font-style: normal;
+            color: var(--c-red);
+        }
+
+        .section-lead {
+            font-size: 16px;
+            color: var(--c-text-sec);
+            line-height: 1.75;
+            margin-bottom: 24px;
+        }
+
+        .divider {
+            height: 1px;
+            background: var(--c-border);
+            margin: 4rem 0;
+        }
+
+        /* ── CALLOUT ── */
+        .callout {
+            background: var(--c-white);
+            border: 1px solid var(--c-border);
+            border-left: 4px solid var(--c-navy);
+            border-radius: var(--r-sm);
+            padding: 16px 20px;
+            margin: 24px 0;
+            font-size: 14px;
+            color: var(--c-text-sec);
+            line-height: 1.7;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .callout strong {
+            color: var(--c-navy);
+            font-weight: 600;
+        }
+
+        .callout.teal {
+            border-left-color: var(--pos-res-fg);
+        }
+
+        .callout.teal strong {
+            color: var(--pos-res-fg);
+        }
+
+        /* ── STEP CARDS ── */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .step-card {
+            background: var(--c-white);
+            border: 1px solid var(--c-border);
+            border-radius: var(--r-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--trans);
+        }
+
+        .step-card:hover {
+            border-color: var(--c-border-h);
+        }
+
+        .step-head {
+            padding: 16px 24px;
+            background: var(--c-gray-soft);
+            border-bottom: 1px solid var(--c-border);
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .step-num {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: var(--c-navy);
+            color: var(--c-text-btn);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--f-head);
+            font-size: 16px;
+            font-weight: 500;
+            line-height: 1;
+        }
+
+        .step-name {
+            font-family: var(--f-head);
+            font-size: 16px;
+            font-weight: 500;
+            text-transform: uppercase;
+            color: var(--c-navy);
+            letter-spacing: 0.04em;
+        }
+
+        .step-sub {
+            font-size: 12px;
+            color: var(--c-text-sec);
+            margin-top: 2px;
+        }
+
+        .step-body {
+            padding: 24px;
+        }
+
+        .step-desc {
+            font-size: 14px;
+            color: var(--c-text-main);
+            line-height: 1.75;
+            margin-bottom: 20px;
+        }
+
+        /* ── EXAMPLES & INPUTS ── */
+        .ex-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        @media(max-width:600px) {
+            .ex-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ex-box {
+            border-radius: var(--r-sm);
+            padding: 16px 20px;
+            border: 1px solid var(--c-border);
+        }
+
+        .ex-box.input {
+            background: var(--c-gray-soft);
+        }
+
+        .ex-box.output {
+            background: var(--c-white);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ex-label {
+            font-family: var(--f-head);
+            font-size: 11px;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .ex-label.in {
+            color: var(--c-text-sec);
+        }
+
+        .ex-label.out {
+            color: var(--c-navy);
+        }
+
+        .ex-text {
+            font-size: 14px;
+            color: var(--c-text-main);
+            line-height: 1.7;
+        }
+
+        /* ── MODES ── */
+        .modes-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        @media(max-width:560px) {
+            .modes-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .mode-card {
+            border-radius: var(--r-md);
+            padding: 24px;
+            border: 1px solid var(--c-border);
+            background: var(--c-white);
+            box-shadow: var(--shadow-sm);
+            position: relative;
+        }
+
+        .mode-badge {
+            font-family: var(--f-body);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            padding: 4px 10px;
+            border-radius: 12px;
+            display: inline-block;
+            margin-bottom: 12px;
+            text-transform: uppercase;
+        }
+
+        .mode-template .mode-badge {
+            background: rgba(13, 33, 55, 0.06);
+            color: var(--c-navy);
+        }
+
+        .mode-ai .mode-badge {
+            background: rgba(230, 57, 70, 0.1);
+            color: var(--c-red);
+            border: 1px solid rgba(230, 57, 70, 0.2);
+        }
+
+        .mode-title {
+            font-family: var(--f-head);
+            font-size: 18px;
+            font-weight: 500;
+            color: var(--c-navy);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+        }
+
+        .mode-desc {
+            font-size: 14px;
+            color: var(--c-text-main);
+            line-height: 1.65;
+            margin-bottom: 16px;
+        }
+
+        .mode-when {
+            font-size: 13px;
+            color: var(--c-text-sec);
+            line-height: 1.6;
+            padding-top: 16px;
+            border-top: 1px solid var(--c-border);
+        }
+
+        .mode-when strong {
+            color: var(--c-navy);
+            font-weight: 600;
+        }
+
+        /* ── PRESETS EXPLAINER ── */
+        .presets-explain {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        @media(max-width:560px) {
+            .presets-explain {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .pe-card {
+            border-radius: var(--r-sm);
+            padding: 20px;
+            border: 1px solid var(--c-border);
+            background: var(--c-white);
+            box-shadow: var(--shadow-sm);
+            transition: var(--trans);
+        }
+
+        .pe-card:hover {
+            border-color: var(--c-border-h);
+            transform: translateY(-2px);
+        }
+
+        .pe-icon {
+            font-size: 24px;
+            margin-bottom: 8px;
+            color: var(--c-navy);
+        }
+
+        .pe-name {
+            font-family: var(--f-head);
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--c-navy);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+        }
+
+        .pe-feel {
+            font-size: 13px;
+            color: var(--c-text-main);
+            line-height: 1.6;
+            margin-bottom: 12px;
+        }
+
+        .pe-use {
+            font-size: 12px;
+            color: var(--c-text-sec);
+            line-height: 1.6;
+            padding-top: 12px;
+            border-top: 1px solid var(--c-border);
+        }
+
+        .pe-use strong {
+            color: var(--c-navy);
+            font-weight: 600;
+        }
+
+        /* ── INTERACTIVE EXAMPLE ── */
+        .example-section {
+            background: var(--c-white);
+            border: 1px solid var(--c-border);
+            border-radius: var(--r-md);
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+        }
+
+        .ex-section-head {
+            padding: 24px;
+            border-bottom: 1px solid var(--c-border);
+            background: var(--c-gray-soft);
+        }
+
+        .ex-section-title {
+            font-family: var(--f-head);
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--c-navy);
+            text-transform: uppercase;
+            margin-bottom: 4px;
+        }
+
+        .ex-section-sub {
+            font-size: 14px;
+            color: var(--c-text-sec);
+        }
+
+        .ex-steps {
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .i-step {
+            background: var(--c-white);
+            border: 1px solid var(--c-border);
+            border-radius: var(--r-sm);
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            transition: var(--trans);
+        }
+
+        .i-step-head {
+            padding: 16px 20px;
+            border-bottom: 1px solid var(--c-border);
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            background: var(--c-gray-soft);
+        }
+
+        .i-step-num {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            background: var(--c-navy);
+            color: var(--c-text-btn);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--f-head);
+            font-size: 13px;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        .i-step-title {
+            font-family: var(--f-head);
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--c-navy);
+            text-transform: uppercase;
+            flex: 1;
+            letter-spacing: 0.04em;
+        }
+
+        .i-step-status {
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 12px;
+            border: 1px solid var(--c-border);
+            color: var(--c-text-sec);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+        }
+
+        .i-step-status.done {
+            color: var(--sem-success);
+            border-color: rgba(16, 185, 129, 0.3);
+            background: var(--sem-success-bg);
+        }
+
+        .i-step-body {
+            padding: 20px;
+        }
+
+        .i-step-hint {
+            font-size: 13px;
+            color: var(--c-text-sec);
+            line-height: 1.6;
+            margin-bottom: 16px;
+        }
+
+        .ex-input-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 12px;
+            margin-bottom: 12px;
+        }
+
+        @media(max-width:500px) {
+            .ex-input-row {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .ex-field {
+            background: var(--c-white);
+            border: 1px solid var(--c-border);
+            border-radius: var(--r-sm);
+            padding: 12px 16px;
+            transition: var(--trans);
+            box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.02);
+        }
+
+        .ex-field:focus-within {
+            border-color: var(--c-navy);
+            box-shadow: var(--shadow-focus);
+        }
+
+        .ex-field-lbl {
+            font-family: var(--f-body);
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            color: var(--c-text-sec);
+            margin-bottom: 8px;
+        }
+
+        .ex-field input,
+        .ex-field textarea,
+        .ex-field select {
+            width: 100%;
+            background: transparent;
+            border: none;
+            outline: none;
+            font-family: var(--f-body);
+            font-size: 14px;
+            color: var(--c-text-main);
+            resize: none;
+            appearance: none;
+        }
+
+        .ex-field textarea {
+            line-height: 1.6;
+            min-height: 72px;
+        }
+
+        .ex-presets {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 12px;
+            margin-bottom: 16px;
+        }
+
+        @media(max-width:500px) {
+            .ex-presets {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .ex-preset {
+            background: var(--c-white);
+            border: 2px solid var(--c-border);
+            border-radius: var(--r-sm);
+            padding: 12px 8px;
+            cursor: pointer;
+            transition: var(--trans);
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .ex-preset:hover {
+            border-color: var(--c-border-h);
+        }
+
+        .ex-preset.sel {
+            border-color: var(--c-navy);
+            background: var(--c-gray-soft);
+            box-shadow: var(--shadow-focus);
+        }
+
+        .ex-p-icon {
+            font-size: 18px;
+            color: var(--c-navy);
+        }
+
+        .ex-p-name {
+            font-family: var(--f-head);
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--c-navy);
+            text-transform: uppercase;
+        }
+
+        /* Scene Position Semantic Colors */
+        .pos-badge {
+            font-family: var(--f-body);
+            font-size: 10px;
+            font-weight: 600;
+            letter-spacing: 0.06em;
+            padding: 3px 8px;
+            border-radius: 4px;
+            text-align: center;
+            flex-shrink: 0;
+            border: 1px solid;
+            text-transform: uppercase;
+        }
+
+        .pos-open {
+            color: var(--pos-open-fg);
+            background: var(--pos-open-bg);
+            border-color: rgba(217, 119, 6, 0.2);
+        }
+
+        .pos-build {
+            color: var(--pos-build-fg);
+            background: var(--pos-build-bg);
+            border-color: rgba(37, 99, 235, 0.2);
+        }
+
+        .pos-turn {
+            color: var(--pos-turn-fg);
+            background: var(--pos-turn-bg);
+            border-color: rgba(230, 57, 70, 0.2);
+        }
+
+        .pos-resolve {
+            color: var(--pos-res-fg);
+            background: var(--pos-res-bg);
+            border-color: rgba(16, 185, 129, 0.2);
+        }
+
+        .result-box {
+            background: var(--c-gray-soft);
+            border: 1px solid var(--c-border);
+            border-radius: var(--r-sm);
+            padding: 20px;
+            min-height: 100px;
+            margin-top: 16px;
+            transition: var(--trans);
+            position: relative;
+        }
+
+        .result-box.has-content {
+            background: var(--c-white);
+            border-color: var(--c-navy);
+            box-shadow: var(--shadow-sm);
+        }
+
+        #result-out {
+            font-family: var(--f-body);
+            font-size: 15px;
+            line-height: 1.7;
+            color: var(--c-text-main);
+            white-space: pre-wrap;
+        }
+
+        #result-out.empty {
+            font-style: italic;
+            color: var(--c-text-sec);
+            font-size: 14px;
+        }
+
+        .result-label {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 12px;
+        }
+
+        .result-lbl-txt {
+            font-family: var(--f-head);
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 0.06em;
+            text-transform: uppercase;
+            color: var(--c-navy);
+        }
+
+        .result-mode {
+            font-family: var(--f-body);
+            font-size: 10px;
+            font-weight: 600;
+            padding: 4px 10px;
+            border-radius: 12px;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+        }
+
+        .ex-build-btn {
+            width: 100%;
+            padding: 16px;
+            border: none;
+            border-radius: var(--r-sm);
+            background: var(--c-red);
+            color: var(--c-text-btn);
+            font-family: var(--f-head);
+            font-size: 16px;
+            font-weight: 500;
+            letter-spacing: 0.04em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: var(--trans);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 20px;
+            box-shadow: 0 4px 12px rgba(230, 57, 70, 0.2);
+        }
+
+        .ex-build-btn:hover:not(:disabled) {
+            background: var(--c-red-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(230, 57, 70, 0.3);
+        }
+
+        .ex-build-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            box-shadow: none;
+            transform: none;
+        }
+
+        .ex-build-btn.secondary {
+            background: var(--c-white);
+            color: var(--c-navy);
+            border: 2px solid var(--c-border-h);
+            box-shadow: none;
+        }
+
+        .ex-build-btn.secondary:hover:not(:disabled) {
+            background: var(--c-gray-soft);
+            border-color: var(--c-navy);
+            box-shadow: var(--shadow-sm);
+        }
+
+        .ex-copy-btn {
+            margin-top: 12px;
+            width: 100%;
+            padding: 14px;
+            border-radius: var(--r-sm);
+            border: 2px solid var(--c-navy);
+            background: transparent;
+            color: var(--c-navy);
+            font-family: var(--f-head);
+            font-size: 14px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            cursor: pointer;
+            transition: var(--trans);
+        }
+
+        .ex-copy-btn:hover:not(:disabled) {
+            background: var(--c-gray-soft);
+            box-shadow: var(--shadow-sm);
+            transform: translateY(-1px);
+        }
+
+        .ex-copy-btn:disabled {
+            opacity: 0.4;
+            border-color: var(--c-border);
+            color: var(--c-text-sec);
+            cursor: not-allowed;
+        }
+
+        .copy-flash {
+            font-family: var(--f-body);
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--sem-success);
+            text-align: center;
+            margin-top: 10px;
+            letter-spacing: 0.02em;
+            min-height: 18px;
+            opacity: 0;
+            transition: var(--trans);
+        }
+
+        /* ── TIPS ── */
+        .tips-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+            margin-top: 24px;
+        }
+
+        @media(max-width:560px) {
+            .tips-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .tip-card {
+            background: var(--c-white);
+            border: 1px solid var(--c-border);
+            border-radius: var(--r-md);
+            padding: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .tip-icon {
+            font-size: 24px;
+            margin-bottom: 12px;
+            color: var(--c-navy);
+        }
+
+        .tip-title {
+            font-family: var(--f-head);
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--c-navy);
+            text-transform: uppercase;
+            margin-bottom: 8px;
+            letter-spacing: 0.02em;
+        }
+
+        .tip-body {
+            font-size: 14px;
+            color: var(--c-text-sec);
+            line-height: 1.7;
+        }
+
+        /* ── FINAL PROMPT ANATOMY (Semantic Colors Maintained) ── */
+        .anatomy-box {
+            background: var(--c-white);
+            border: 1px solid var(--c-border);
+            border-radius: var(--r-md);
+            padding: 32px;
+            margin-top: 24px;
+            box-shadow: var(--shadow-md);
+        }
+
+        .anatomy-prompt {
+            font-family: var(--f-body);
+            font-size: 15px;
+            font-weight: 400;
+            line-height: 2.2;
+            color: var(--c-text-main);
+            margin-bottom: 24px;
+        }
+
+        .anatomy-prompt mark {
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-style: normal;
+            font-weight: 500;
+        }
+
+        .mark-cam {
+            background: var(--mk-cam-bg);
+            color: var(--mk-cam-fg);
+        }
+
+        .mark-char {
+            background: var(--mk-char-bg);
+            color: var(--mk-char-fg);
+        }
+
+        .mark-act {
+            background: var(--mk-act-bg);
+            color: var(--mk-act-fg);
+        }
+
+        .mark-move {
+            background: var(--mk-move-bg);
+            color: var(--mk-move-fg);
+        }
+
+        .mark-light {
+            background: var(--mk-light-bg);
+            color: var(--mk-light-fg);
+        }
+
+        .mark-grade {
+            background: var(--mk-grade-bg);
+            color: var(--mk-grade-fg);
+        }
+
+        .anatomy-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-top: 16px;
+            padding-top: 24px;
+            border-top: 1px solid var(--c-border);
+        }
+
+        .leg-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--c-text-main);
+        }
+
+        .leg-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+            flex-shrink: 0;
+        }
+
+        /* ── API EXPLAINER ── */
+        .api-explainer {
+            background: var(--c-white);
+            border: 1px solid var(--c-border);
+            border-radius: var(--r-md);
+            padding: 32px;
+            margin-top: 24px;
+            box-shadow: var(--shadow-sm);
+        }
+
+        .api-flow {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+            margin-top: 20px;
+        }
+
+        .api-step {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            padding: 20px;
+            border-radius: var(--r-sm);
+            background: var(--c-gray-soft);
+            border: 1px solid var(--c-border);
+        }
+
+        .api-step-n {
+            width: 28px;
+            height: 28px;
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: var(--c-navy);
+            color: var(--c-text-btn);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: var(--f-head);
+            font-size: 14px;
+            font-weight: 500;
+        }
+
+        .api-step-content {
+            flex: 1;
+        }
+
+        .api-step-title {
+            font-family: var(--f-head);
+            font-size: 16px;
+            font-weight: 500;
+            color: var(--c-navy);
+            text-transform: uppercase;
+            margin-bottom: 6px;
+            letter-spacing: 0.02em;
+        }
+
+        .api-step-desc {
+            font-size: 14px;
+            color: var(--c-text-sec);
+            line-height: 1.7;
+        }
+
+        .api-step-desc a {
+            color: var(--c-navy);
+            font-weight: 600;
+            text-decoration: none;
+            border-bottom: 1px solid var(--c-border-h);
+            padding-bottom: 1px;
+            transition: var(--trans);
+        }
+
+        .api-step-desc a:hover {
+            border-bottom-color: var(--c-navy);
+            color: var(--c-navy-hover);
+        }
+
+        /* ── FOOTER ── */
+        footer {
+            position: relative;
+            z-index: 1;
+            border-top: 1px solid var(--c-border);
+            padding: 32px 2rem;
+            text-align: center;
+            max-width: var(--max);
+            margin: 0 auto;
+        }
+
+        .footer-logo {
+            font-family: var(--f-head);
+            font-size: 24px;
+            font-weight: 600;
+            color: var(--c-navy);
+            text-transform: uppercase;
+            letter-spacing: 0.04em;
+            margin-bottom: 12px;
+        }
+
+        .footer-logo em {
+            font-style: normal;
+            color: var(--c-red);
+        }
+
+        .footer-note {
+            font-size: 13px;
+            color: var(--c-text-sec);
+            line-height: 1.7;
+        }
+
+        /* ── ANIMATIONS ── */
+        @keyframes fadeUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px) scale(0.98);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .section {
+            animation: fadeUp .5s cubic-bezier(0.4, 0, 0.2, 1) both;
+        }
+
+        .result-reveal {
+            animation: fadeUp .4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+        }
+
+        @media(max-width:600px) {
+            nav {
+                padding: 0 16px;
+            }
+
+            .page {
+                padding: 2.5rem 1rem 5rem;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero-title {
+                font-size: 2.4rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav>
+        <span class="nav-logo">Fr<em>a</em>me</span>
+        <span class="nav-sep"></span>
+        <span class="nav-tag">How to Use</span>
+        <div style="flex:1"></div>
+        <div class="nav-links">
+            <a class="nav-link" href="#what">What it does</a>
+            <a class="nav-link" href="#steps">The 3 steps</a>
+            <a class="nav-link" href="#modes">Modes</a>
+            <a class="nav-link" href="#example">Try it</a>
+        </div>
+    </nav>
+
+    <div class="page">
+
+        <div class="hero" id="what">
+            <div class="hero-eyebrow">Frame — User Guide</div>
+            <h1 class="hero-title">Turn your idea into a<br><em>director's instruction.</em></h1>
+            <p class="hero-sub">Frame is for anyone who wants to create AI video — whether you're a brand founder, a
+                filmmaker, a student, or someone who just has a story to tell. No film knowledge required.</p>
+            <div class="hero-outcome">
+                <div class="outcome-bar"></div>
+                <div>
+                    <div
+                        style="font-family:var(--f-head); font-size:12px; color:var(--c-navy); letter-spacing:0.08em; text-transform:uppercase; margin-bottom:8px; font-weight:500;">
+                        What you get</div>
+                    Static low-angle shot, 35mm lens, shallow depth of field. Arjun — late 30s, worn jacket, tired eyes
+                    that still carry something — sits alone at a fluorescent-lit desk, a single printed page face-down
+                    in front of him. He doesn't move. The room suggests years of trying. Slow dolly in. Desaturated,
+                    high contrast, hard shadows under his jaw. No dialogue. The silence has weight. Kodak film grain.
+                </div>
+            </div>
+            <p style="font-size:13px; color:var(--c-text-sec); margin-top:16px; font-weight:500;">A complete,
+                ready-to-paste prompt for AI video tools.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <div class="section-eyebrow">The Idea</div>
+            <h2 class="section-title">What Frame <em>actually</em> does</h2>
+            <p class="section-lead">AI video tools like Kling, Runway, and Sora are powerful — but they need very
+                specific instructions to produce cinematic results. Vague prompts produce vague videos. Frame's job is
+                to take your idea and turn it into the kind of precise visual instruction that these tools understand.
+            </p>
+
+            <div class="callout">
+                <strong>Think of it like this:</strong> You are the storyteller. Frame is the translator. You describe
+                what you want to happen and feel — Frame converts that into the technical language the AI camera
+                understands.
+            </div>
+
+            <p style="font-size:15px; color:var(--c-text-sec); line-height:1.75; margin-bottom:16px;">You do not need to
+                know anything about filmmaking. You do not need to know what a "dolly shot" or "chiaroscuro lighting"
+                means. You only need to know your story — Frame handles the translation.</p>
+
+            <div class="callout teal">
+                <strong>The output format:</strong> Every prompt Frame produces is a single flowing paragraph — camera
+                setup, character, action, movement, lighting, and color grade woven together as natural language. This
+                integrated format consistently produces better AI video results than lists or bullet points.
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section" id="steps">
+            <div class="section-eyebrow">How it works</div>
+            <h2 class="section-title">Three steps.<br><em>That is all.</em></h2>
+            <p class="section-lead">Open Frame. You will see a left column with three numbered steps. Fill them in
+                order. Then hit Build Prompt.</p>
+
+            <div class="steps">
+
+                <div class="step-card">
+                    <div class="step-head">
+                        <div class="step-num">1</div>
+                        <div>
+                            <div class="step-name">Your story</div>
+                            <div class="step-sub">Set once — applies to every scene in your film</div>
+                        </div>
+                    </div>
+                    <div class="step-body">
+                        <p class="step-desc">Tell Frame what your film is about in plain, everyday language. There are
+                            three fields — the main idea, your main character, and the world or place the story happens
+                            in.</p>
+                        <p class="step-desc">Write the way you would explain it to a friend. No need for film terms, no
+                            need for technical language. The more specific and honest your description, the better the
+                            prompt will be.</p>
+
+                        <div class="ex-row">
+                            <div class="ex-box input">
+                                <div class="ex-label in">You write</div>
+                                <div class="ex-text"><strong>Idea:</strong> A founder who spent 10 years building
+                                    something nobody believed in — and the moment it finally
+                                    works.<br><br><strong>Character:</strong> Arjun, late 30s, worn jacket, tired
+                                    eyes<br><br><strong>World:</strong> Small workshop, late at night, fluorescent light
+                                </div>
+                            </div>
+                            <div class="ex-box output">
+                                <div class="ex-label out">Frame understands</div>
+                                <div class="ex-text">The emotional core of the story. Who the audience is watching.
+                                    Where they are. This feeds into every scene — so every prompt feels like it belongs
+                                    to the same film.</div>
+                            </div>
+                        </div>
+
+                        <div class="callout" style="margin-top:24px">
+                            <strong>Tip:</strong> Don't overthink it. Two sentences for the idea, a name and one detail
+                            for the character, and a sense of place for the world is enough to start.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-head">
+                        <div class="step-num">2</div>
+                        <div>
+                            <div class="step-name">This scene</div>
+                            <div class="step-sub">What you see happening in this specific moment</div>
+                        </div>
+                    </div>
+                    <div class="step-body">
+                        <p class="step-desc">Describe what happens in this scene the way you would describe it to
+                            someone who can't see it. What is the character doing? What does the moment feel like? What
+                            does the environment look like?</p>
+                        <p class="step-desc">You will also see a small dropdown in the top-right of this section — Open,
+                            Build, Turn, Resolve. This tells Frame where in the story this scene sits, which shapes how
+                            the prompt is written.</p>
+
+                        <div class="ex-row">
+                            <div class="ex-box input">
+                                <div class="ex-label in">You write</div>
+                                <div class="ex-text">He stands at the workbench, holding the finished product for the
+                                    first time. His hands are shaking slightly. He doesn't smile — just stares at it
+                                    like he can't believe it's real.</div>
+                            </div>
+                            <div class="ex-box output">
+                                <div class="ex-label out">Frame reads</div>
+                                <div class="ex-text">A moment of earned disbelief. Stillness. Weight. The kind of shot
+                                    that needs to stay wide enough to show isolation, close enough to show hands.</div>
+                            </div>
+                        </div>
+
+                        <div
+                            style="margin-top:24px; background:var(--c-white); border:1px solid var(--c-border); border-radius:var(--r-md); overflow:hidden; box-shadow:var(--shadow-sm);">
+                            <div
+                                style="padding:16px 20px; border-bottom:1px solid var(--c-border); background:var(--c-gray-soft); font-family:var(--f-head); font-size:14px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; color:var(--c-navy);">
+                                Scene positions — what each one means</div>
+                            <div style="padding:20px; display:flex; flex-direction:column; gap:16px;">
+                                <div style="display:flex; gap:16px; align-items:flex-start">
+                                    <span class="pos-badge pos-open" style="width:64px;">Open</span>
+                                    <span style="font-size:14px; color:var(--c-text-main); line-height:1.6">The first
+                                        impression. Establish who your character is and where they live before anything
+                                        happens. Sets the emotional tone.</span>
+                                </div>
+                                <div style="display:flex; gap:16px; align-items:flex-start">
+                                    <span class="pos-badge pos-build" style="width:64px;">Build</span>
+                                    <span style="font-size:14px; color:var(--c-text-main); line-height:1.6">The middle.
+                                        Something is at stake. The character is working toward or struggling against
+                                        something.</span>
+                                </div>
+                                <div style="display:flex; gap:16px; align-items:flex-start">
+                                    <span class="pos-badge pos-turn" style="width:64px;">Turn</span>
+                                    <span style="font-size:14px; color:var(--c-text-main); line-height:1.6">The moment
+                                        everything changes. A realization, a decision, a confrontation. The scene that
+                                        makes the story matter.</span>
+                                </div>
+                                <div style="display:flex; gap:16px; align-items:flex-start">
+                                    <span class="pos-badge pos-resolve" style="width:64px;">Resolve</span>
+                                    <span style="font-size:14px; color:var(--c-text-main); line-height:1.6">The landing.
+                                        The feeling after the turn. What the audience takes with them when the video
+                                        ends.</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="step-card">
+                    <div class="step-head">
+                        <div class="step-num">3</div>
+                        <div>
+                            <div class="step-name">Visual style</div>
+                            <div class="step-sub">Pick one — Frame handles everything technical</div>
+                        </div>
+                    </div>
+                    <div class="step-body">
+                        <p class="step-desc">Four style presets. Each one sets the entire visual direction — lens
+                            choice, lighting, camera movement, color grade, mood — automatically. You pick the feeling.
+                            Frame picks the technique.</p>
+
+                        <div class="presets-explain">
+                            <div class="pe-card">
+                                <!-- <div class="pe-icon">◼</div> -->
+                                <div class="pe-name">Nolan</div>
+                                <div class="pe-feel">Feels like a thriller. Precise and psychological. Every frame earns
+                                    its place. Shadows are deep. Silence is heavy. High contrast, film grain.</div>
+                                <div class="pe-use"><strong>Use for:</strong> founder stories, moments of pressure,
+                                    decisions, anything that needs weight and intensity.</div>
+                            </div>
+                            <div class="pe-card">
+                                <!-- <div class="pe-icon">◈</div> -->
+                                <div class="pe-name">Brand Film</div>
+                                <div class="pe-feel">Feels warm and human. Like an advertisement that doesn't feel like
+                                    one. Close to the character. Soft light. Purposeful and honest.</div>
+                                <div class="pe-use"><strong>Use for:</strong> brand stories, product launches,
+                                    testimonials, anything where trust and warmth matter.</div>
+                            </div>
+                            <div class="pe-card">
+                                <!-- <div class="pe-icon">◯</div> -->
+                                <div class="pe-name">Epic</div>
+                                <div class="pe-feel">Feels massive. IMAX scale. The person looks small against the
+                                    world. God rays through atmosphere. The kind of shot that makes an audience hold
+                                    their breath.</div>
+                                <div class="pe-use"><strong>Use for:</strong> landscapes, crowds, moments of awe,
+                                    anything that needs to feel larger than one person.</div>
+                            </div>
+                            <div class="pe-card">
+                                <!-- <div class="pe-icon">◉</div> -->
+                                <div class="pe-name">Intimate</div>
+                                <div class="pe-feel">Feels close and real. Handheld, slightly unsteady. Warm
+                                    single-source light. The feeling of being in the room with someone during a private
+                                    moment.</div>
+                                <div class="pe-use"><strong>Use for:</strong> emotional scenes, quiet turning points,
+                                    vulnerability, anything where closeness matters more than scale.</div>
+                            </div>
+                        </div>
+
+                        <div class="callout" style="margin-top:24px">
+                            <strong>Advanced controls</strong> — below the presets there is a collapsed section called
+                            "Advanced Director Controls". You can ignore this completely and still get great results. It
+                            is only for situations where you want to override a specific detail — for example, if you
+                            want Epic scale but with handheld camera movement instead of a crane shot.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <div class="section-eyebrow">Understanding the output</div>
+            <h2 class="section-title">What the prompt<br><em>is made of</em></h2>
+            <p class="section-lead">Every prompt Frame produces follows the same integrated structure. Understanding it
+                helps you read results and know what to adjust if a video doesn't come out as expected.</p>
+
+            <div class="anatomy-box">
+                <div class="anatomy-prompt">
+                    <mark class="mark-cam">Static low-angle shot, 35mm lens, shallow depth of field.</mark> <mark
+                        class="mark-char">Arjun — late 30s, worn jacket, tired eyes that still carry something —</mark>
+                    <mark class="mark-act">sits alone at a fluorescent-lit desk, a single printed page face-down in
+                        front of him. He doesn't move. The room suggests years of trying.</mark> <mark
+                        class="mark-move">Slow dolly in.</mark> <mark class="mark-light">Desaturated, high contrast,
+                        hard shadows under his jaw. No dialogue. The silence has weight.</mark> <mark
+                        class="mark-grade">Kodak film grain.</mark>
+                </div>
+                <div class="anatomy-legend">
+                    <div class="leg-item"><span class="leg-dot" style="background:var(--mk-cam-fg)"></span>Camera setup
+                    </div>
+                    <div class="leg-item"><span class="leg-dot" style="background:var(--mk-char-fg)"></span>Character
+                    </div>
+                    <div class="leg-item"><span class="leg-dot" style="background:var(--mk-act-fg)"></span>Action &
+                        environment</div>
+                    <div class="leg-item"><span class="leg-dot" style="background:var(--mk-move-fg)"></span>Camera
+                        movement</div>
+                    <div class="leg-item"><span class="leg-dot" style="background:var(--mk-light-fg)"></span>Lighting &
+                        mood</div>
+                    <div class="leg-item"><span class="leg-dot" style="background:var(--mk-grade-fg)"></span>Color grade
+                    </div>
+                </div>
+            </div>
+
+            <p style="font-size:15px; color:var(--c-text-sec); line-height:1.75; margin-top:24px;">These elements are
+                always woven together as natural prose — not separated into bullet points or labelled sections. AI video
+                models read this as one continuous visual instruction, which produces more consistent, cinematic
+                results.</p>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section" id="modes">
+            <div class="section-eyebrow">Two modes</div>
+            <h2 class="section-title">Build Prompt vs<br><em>Enhance with AI</em></h2>
+            <p class="section-lead">Frame has two ways to generate a prompt. Both produce the same format. The
+                difference is in the quality of the output and whether you need an API key.</p>
+
+            <div class="modes-grid">
+                <div class="mode-card mode-template">
+                    <span class="mode-badge">◆ Template Built</span>
+                    <div class="mode-title">Build Prompt</div>
+                    <div class="mode-desc">Instant. Works offline. No API key needed. Frame uses your story, scene idea,
+                        and style choice to fill a carefully written cinematic template. The result is always correctly
+                        formatted and ready to use.</div>
+                    <div class="mode-when">
+                        <strong>Use this when:</strong> you want a result immediately, you are testing ideas, you don't
+                        have an API key yet, or the template result is already good enough for your needs.
+                    </div>
+                </div>
+                <div class="mode-card mode-ai">
+                    <span class="mode-badge">✦ AI Enhanced</span>
+                    <div class="mode-title">Enhance with AI</div>
+                    <div class="mode-desc">Uses a live AI model to write a custom prompt around your specific story,
+                        character, and scene idea. The result is more natural, more specific to your exact situation,
+                        and more creatively varied.</div>
+                    <div class="mode-when">
+                        <strong>Use this when:</strong> you want the highest quality result, you need the prompt to
+                        reflect very specific story details, or the template result feels too generic for your project.
+                    </div>
+                </div>
+            </div>
+
+            <div class="api-explainer">
+                <h3
+                    style="font-family:var(--f-head); font-size:20px; font-weight:500; letter-spacing:0.02em; color:var(--c-navy); text-transform:uppercase; margin-bottom:12px;">
+                    How to get an API key <em
+                        style="font-style:normal; color:var(--c-text-sec); text-transform:none; letter-spacing:0;">(it's
+                        free)</em></h3>
+                <p style="font-size:14px; color:var(--c-text-sec); line-height:1.75; margin-bottom:20px;">An API key is
+                    like a personal password that connects Frame directly to an AI provider. Frame supports three
+                    providers — all are free to start. Your key is stored only in your own browser and sent directly
+                    from your device to the provider. Frame never sees it.</p>
+
+                <div class="api-flow">
+                    <div class="api-step">
+                        <div class="api-step-n">1</div>
+                        <div class="api-step-content">
+                            <div class="api-step-title">Choose a provider</div>
+                            <div class="api-step-desc">
+                                <strong>Anthropic (recommended):</strong> <a href="https://console.anthropic.com"
+                                    target="_blank">console.anthropic.com</a> — free to start<br>
+                                <strong>Google Gemini:</strong> <a href="https://aistudio.google.com"
+                                    target="_blank">aistudio.google.com</a> — free tier available<br>
+                                <strong>OpenAI:</strong> <a href="https://platform.openai.com"
+                                    target="_blank">platform.openai.com</a> — paid only
+                            </div>
+                        </div>
+                    </div>
+                    <div class="api-step">
+                        <div class="api-step-n">2</div>
+                        <div class="api-step-content">
+                            <div class="api-step-title">Sign up and create a key</div>
+                            <div class="api-step-desc">Create a free account. Go to the API keys section. Click "Create
+                                new key". Copy the key — it will look something like: <span
+                                    style="font-family:var(--f-body); font-weight:600; color:var(--c-navy)">sk-ant-api03-…</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="api-step">
+                        <div class="api-step-n">3</div>
+                        <div class="api-step-content">
+                            <div class="api-step-title">Paste it in Frame</div>
+                            <div class="api-step-desc">In the right panel of Frame, find the "AI Connection" card. Paste
+                                your key. Click "Verify & Connect". Frame checks the key works, then saves it in your
+                                browser. Done — you can now use Enhance with AI for every scene.</div>
+                        </div>
+                    </div>
+                    <div class="api-step">
+                        <div class="api-step-n">4</div>
+                        <div class="api-step-content">
+                            <div class="api-step-title">Your key stays on your device</div>
+                            <div class="api-step-desc">The key lives in your browser's local storage. It is never sent
+                                to any server other than the AI provider directly. If you want to use Frame on a shared
+                                device, uncheck "Remember device" — it will only last until you close the browser tab.
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section">
+            <div class="section-eyebrow">Getting better results</div>
+            <h2 class="section-title">Tips that make a<br><em>real difference</em></h2>
+            <div class="tips-grid">
+                <div class="tip-card">
+                    <div class="tip-icon">✍</div>
+                    <div class="tip-title">Write your scene idea in first person</div>
+                    <div class="tip-body">Instead of "a man walks into a room", try "he walks into the room slowly, like
+                        he's not sure he should be there". Specific detail produces specific video.</div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🎭</div>
+                    <div class="tip-title">Describe emotion, not action</div>
+                    <div class="tip-body">"His hands are shaking" tells the AI what to show. "He is nervous" tells it
+                        nothing specific. Show the physical sign of the feeling — not the label.</div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🎬</div>
+                    <div class="tip-title">One clear thing per scene</div>
+                    <div class="tip-body">The best AI videos show one moment, not three. If you have multiple things
+                        happening, split them into multiple scenes. Each scene gets its own prompt.</div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">🔄</div>
+                    <div class="tip-title">Regenerate until it feels right</div>
+                    <div class="tip-body">The first result is not always the best one. Hit Regenerate to get a different
+                        version of the same scene. Lock a prompt you love to protect it.</div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">📋</div>
+                    <div class="tip-title">Copy and paste directly</div>
+                    <div class="tip-body">Once your prompt is generated, click Copy Prompt and paste it directly into
+                        Kling, Runway, or Sora. No editing needed — the format is ready as-is.</div>
+                </div>
+                <div class="tip-card">
+                    <div class="tip-icon">💾</div>
+                    <div class="tip-title">Your work saves automatically</div>
+                    <div class="tip-body">Frame saves everything as you type — story, scenes, generated prompts. Close
+                        the tab and come back later — everything will be exactly where you left it.</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="divider"></div>
+
+        <div class="section" id="example">
+            <div class="section-eyebrow">Try it yourself</div>
+            <h2 class="section-title">A complete example —<br><em>step by step</em></h2>
+            <p class="section-lead">This is a fully working example. The fields below are pre-filled with a real story.
+                Follow the steps, hit Build Prompt at the end, and see your final prompt generated in real time. You can
+                edit any field to make it your own.</p>
+
+            <div class="callout teal" style="margin-bottom:32px">
+                <strong>What this example is:</strong> A brand film for a coffee founder — someone who spent years
+                perfecting a single recipe. Four scenes: the early morning ritual, the struggle, the breakthrough, the
+                first customer. By the end of this example, you will have one complete scene prompt ready to paste into
+                an AI video tool.
+            </div>
+
+            <div class="example-section">
+                <div class="ex-section-head">
+                    <div class="ex-section-title">The Coffee Founder</div>
+                    <div class="ex-section-sub">A brand film about obsession, craft, and the moment it pays off</div>
+                </div>
+
+                <div class="ex-steps">
+
+                    <div class="i-step" id="ex1">
+                        <div class="i-step-head">
+                            <div class="i-step-num">1</div>
+                            <div class="i-step-title">Fill in your story DNA</div>
+                            <span class="i-step-status" id="ex1-status">Waiting</span>
+                        </div>
+                        <div class="i-step-body">
+                            <p class="i-step-hint">These three fields describe the entire film. They are pre-filled —
+                                read them, then edit if you want to personalise.</p>
+                            <div class="ex-field" style="margin-bottom:12px">
+                                <div class="ex-field-lbl">Core idea / theme</div>
+                                <textarea id="ex-idea"
+                                    rows="2">A coffee founder who spent seven years perfecting a single recipe in a tiny apartment kitchen — and the morning a stranger tastes it for the first time and just closes their eyes.</textarea>
+                            </div>
+                            <div class="ex-input-row">
+                                <div class="ex-field">
+                                    <div class="ex-field-lbl">Main character</div>
+                                    <input id="ex-char" type="text"
+                                        value="Maya, early 40s, flour on her sleeve, a focused quietness about her">
+                                </div>
+                                <div class="ex-field">
+                                    <div class="ex-field-lbl">World / setting</div>
+                                    <input id="ex-world" type="text"
+                                        value="A small home kitchen turned micro-roastery, warm light, early morning">
+                                </div>
+                            </div>
+                            <button class="ex-build-btn secondary" onclick="completeStep1()">
+                                ✓ Story looks good — continue to Step 2
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="i-step" id="ex2" style="opacity:0.45; pointer-events:none; transition:var(--trans);">
+                        <div class="i-step-head">
+                            <div class="i-step-num">2</div>
+                            <div class="i-step-title">Describe your scene</div>
+                            <span class="i-step-status" id="ex2-status">Locked</span>
+                        </div>
+                        <div class="i-step-body">
+                            <p class="i-step-hint">We will build the "Resolve" scene — the emotional payoff. Describe
+                                what you see happening in plain language.</p>
+                            <div class="ex-field" style="margin-bottom:12px">
+                                <div class="ex-field-lbl">Scene position</div>
+                                <select id="ex-pos">
+                                    <option value="OPEN">Open — establish the world</option>
+                                    <option value="BUILD">Build — rising tension</option>
+                                    <option value="TURN">Turn — the pivotal moment</option>
+                                    <option value="RESOLVE" selected>Resolve — the emotional landing</option>
+                                </select>
+                            </div>
+                            <div class="ex-field">
+                                <div class="ex-field-lbl">What happens in this scene</div>
+                                <textarea id="ex-scene"
+                                    rows="3">A customer takes the first sip. She doesn't say anything — she just closes her eyes and holds the cup with both hands. Maya watches from behind the counter. She turns away before the customer looks up.</textarea>
+                            </div>
+                            <button class="ex-build-btn secondary" onclick="completeStep2()">
+                                ✓ Scene looks good — continue to Step 3
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="i-step" id="ex3" style="opacity:0.45; pointer-events:none; transition:var(--trans);">
+                        <div class="i-step-head">
+                            <div class="i-step-num">3</div>
+                            <div class="i-step-title">Pick a visual style</div>
+                            <span class="i-step-status" id="ex3-status">Locked</span>
+                        </div>
+                        <div class="i-step-body">
+                            <p class="i-step-hint">This scene is intimate and emotional — a quiet private moment. Which
+                                style fits?</p>
+                            <div class="ex-presets" id="ex-presets">
+                                <button class="ex-preset" data-p="nolan" onclick="selectExPreset('nolan',this)">
+                                    <!-- <span class="ex-p-icon">◼</span> -->
+                                    <span class="ex-p-name">Nolan</span>
+                                </button>
+                                <button class="ex-preset" data-p="brand" onclick="selectExPreset('brand',this)">
+                                    <!-- <span class="ex-p-icon">◈</span> -->
+                                    <span class="ex-p-name">Brand Film</span>
+                                </button>
+                                <button class="ex-preset" data-p="epic" onclick="selectExPreset('epic',this)">
+                                    <!-- <span class="ex-p-icon">◯</span> -->
+                                    <span class="ex-p-name">Epic</span>
+                                </button>
+                                <button class="ex-preset sel" data-p="intimate"
+                                    onclick="selectExPreset('intimate',this)">
+                                    <!-- <span class="ex-p-icon">◉</span> -->
+                                    <span class="ex-p-name">Intimate</span>
+                                </button>
+                            </div>
+                            <div class="callout teal" style="margin:20px 0 16px;">
+                                <strong>Why Intimate?</strong> This scene is about a private emotional moment between
+                                two people. Handheld warmth, close lens, practical light — that's how you make an
+                                audience feel they're in the room.
+                            </div>
+                            <p style="font-size:13px; color:var(--c-text-sec); font-style:italic;">Try selecting a
+                                different style — notice how the reasoning changes. Then come back to Intimate before
+                                hitting Build.</p>
+                        </div>
+                    </div>
+
+                    <div class="i-step" id="ex4" style="opacity:0.45; pointer-events:none; transition:var(--trans);">
+                        <div class="i-step-head">
+                            <div class="i-step-num"
+                                style="background:var(--c-white); border:2px solid var(--c-navy); color:var(--c-navy);">
+                                ✦</div>
+                            <div class="i-step-title">Build your prompt</div>
+                            <span class="i-step-status" id="ex4-status">Locked</span>
+                        </div>
+                        <div class="i-step-body">
+                            <p class="i-step-hint">Hit the button below. Frame will build your complete cinematic prompt
+                                from everything you've filled in above. This is the exact prompt you will paste into
+                                Kling, Runway, or Sora.</p>
+
+                            <div class="result-box" id="result-box">
+                                <div class="result-label">
+                                    <span class="result-lbl-txt">Generated prompt</span>
+                                    <span class="result-mode" id="ex-result-mode"></span>
+                                </div>
+                                <div id="result-out" class="empty">Your prompt will appear here after you hit Build
+                                    Prompt.</div>
+                            </div>
+
+                            <button class="ex-build-btn" id="ex-build-btn" onclick="buildExamplePrompt()">
+                                Build Prompt
+                            </button>
+                            <button class="ex-copy-btn" id="ex-copy-btn" onclick="copyExamplePrompt()" disabled
+                                style="opacity:0.4">
+                                Copy to clipboard
+                            </button>
+                            <div class="copy-flash" id="ex-copy-flash">✓ Copied — paste into Kling, Runway, or Sora
+                            </div>
+
+                            <div
+                                style="margin-top:24px; padding:20px; background:var(--c-gray-soft); border:1px solid var(--c-border); border-radius:var(--r-md);">
+                                <div
+                                    style="font-family:var(--f-head); font-size:14px; font-weight:500; letter-spacing:0.06em; text-transform:uppercase; color:var(--c-navy); margin-bottom:12px;">
+                                    What to do next</div>
+                                <div style="font-size:14px; color:var(--c-text-main); line-height:1.7">
+                                    1. Copy your prompt above<br>
+                                    2. Open <strong style="color:var(--c-navy)">AI video generator</strong><br>
+                                    3. Paste the prompt into the text field<br>
+                                    4. Generate your video<br><br>
+                                    Then go back to the top of Frame and build the other three scenes — Open, Build, and
+                                    Turn — to complete your full film.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+        <div class="divider" style="margin-top:5rem;"></div>
+
+        <div class="section" style="text-align:center; max-width:700px; margin:0 auto;">
+            <div class="section-eyebrow">Before you go</div>
+            <h2 class="section-title">The one thing that<br><em>matters most</em></h2>
+            <p class="section-lead">The quality of your prompt is determined almost entirely by the quality of your
+                scene description in Step 2. The more specific, honest, and visual your description, the better the
+                result — regardless of which style you pick or whether you use AI enhancement.</p>
+
+            <div class="callout teal" style="text-align:left;">
+                <strong>The test:</strong> Read your scene description out loud. Can you see it? Can you hear it? Does
+                it feel like something that actually happened to a real person? If yes — your prompt will be good. If it
+                still feels abstract or general — go back and add one more specific physical detail.
+            </div>
+
+            <p style="font-size:16px; color:var(--c-navy); font-weight:500; margin-top:32px;">You do not need to master
+                filmmaking to use Frame. You need to know your story. Frame does the rest.</p>
+        </div>
+
+    </div>
+    <footer>
+        <div class="footer-logo">Fr<em>a</em>me</div>
+        <div class="footer-note">Open both files in your browser — use this guide alongside the tool.<br>Your API key
+            stays in your browser. Your story stays yours.</div>
+    </footer>
+
+    <script>
+        /* ── EXAMPLE LOGIC ── */
+        let exPreset = 'intimate';
+        let exBuilt = false;
+
+        /* Step flow */
+        function completeStep1() {
+            unlockStep('ex2', 'ex1-status', 'ex2-status');
+        }
+        function completeStep2() {
+            unlockStep('ex3', 'ex2-status', 'ex3-status');
+            unlockStep('ex4', 'ex3-status', 'ex4-status');
+        }
+        function unlockStep(nextId, curStatusId, nextStatusId) {
+            const next = document.getElementById(nextId);
+            const curSt = document.getElementById(curStatusId);
+            const nextSt = nextStatusId ? document.getElementById(nextStatusId) : null;
+            if (curSt) { curSt.textContent = 'Done'; curSt.classList.add('done'); }
+            if (next) { next.style.opacity = '1'; next.style.pointerEvents = 'auto'; }
+            if (nextSt) { nextSt.textContent = 'Ready'; nextSt.style.borderColor = "var(--c-navy)"; nextSt.style.color = "var(--c-navy)"; }
+            if (next) next.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        /* Preset selection in example */
+        function selectExPreset(key, el) {
+            exPreset = key;
+            document.querySelectorAll('.ex-preset').forEach(b => b.classList.remove('sel'));
+            el.classList.add('sel');
+        }
+
+        /* Template variations (same engine as the main tool) */
+        const EX_TMPL = {
+            nolan: (char, world, idea, pos) => `Static low-angle shot, 35mm lens, shallow depth of field. ${char} — ${world}. ${idea} Slow dolly in. Hard light, chiaroscuro contrast, deep shadows. Desaturated high contrast, crushed blacks. No dialogue. The silence has weight. Kodak film grain.`,
+            brand: (char, world, idea, pos) => `Medium close-up, 50mm lens, eye level. ${char}, set in ${world}. ${idea} Gentle slow push-in. Soft diffused warm light, golden hour catching dust. Warm naturalistic grade, subtle grain. Natural ambient sound — the world breathing.`,
+            epic: (char, world, idea, pos) => `Extreme wide shot, 18mm ultra-wide lens, low angle. ${world}. ${char} — a solitary figure in the frame. ${idea} Slow crane pull-back — scale revealing. God rays through atmosphere, dramatic overcast. Teal and charcoal, crushed blacks. IMAX 70mm, 1.43:1 ratio. Kodak grain.`,
+            intimate: (char, world, idea, pos) => `Close-up, 85mm portrait lens, shallow depth of field. ${char}, ${world} softened behind. ${idea} Handheld — breathing with the subject, micro-tremor. Warm single practical source, everything else falling to shadow. Warm naturalistic grade, soft grain. No score. Small sounds. Presence.`,
+        };
+
+        function buildExamplePrompt() {
+            const idea = document.getElementById('ex-idea').value.trim();
+            const char = document.getElementById('ex-char').value.trim();
+            const world = document.getElementById('ex-world').value.trim();
+            const scene = document.getElementById('ex-scene').value.trim();
+            const pos = document.getElementById('ex-pos').value;
+
+            const charStr = char || 'the subject';
+            const worldStr = world || 'the environment';
+            const ideaStr = scene || idea || 'a quiet moment of significance';
+
+            const fn = EX_TMPL[exPreset] || EX_TMPL.intimate;
+            const result = fn(charStr, worldStr, ideaStr, pos);
+
+            const outEl = document.getElementById('result-out');
+            const box = document.getElementById('result-box');
+            const mode = document.getElementById('ex-result-mode');
+            const copyBtn = document.getElementById('ex-copy-btn');
+            const st4 = document.getElementById('ex4-status');
+
+            outEl.textContent = result;
+            outEl.classList.remove('empty');
+            outEl.classList.add('result-reveal');
+            outEl.addEventListener('animationend', () => outEl.classList.remove('result-reveal'), { once: true });
+
+            const presetNames = { nolan: 'Nolan', brand: 'Brand Film', epic: 'Epic', intimate: 'Intimate' };
+            mode.textContent = '◆ ' + (presetNames[exPreset] || 'Template') + ' Style';
+            mode.style.cssText = 'color:var(--c-navy); background:rgba(13,33,55,0.06); border:1px solid rgba(13,33,55,0.12); font-size:10px; padding:3px 10px; border-radius:12px; font-weight:600; letter-spacing:0.06em;';
+
+            box.classList.add('has-content');
+            copyBtn.disabled = false;
+            copyBtn.style.opacity = '1';
+            st4.textContent = 'Done';
+            st4.classList.add('done');
+            st4.style.color = "var(--sem-success)";
+            st4.style.borderColor = "rgba(16,185,129,0.3)";
+            exBuilt = true;
+
+            // Scroll to result
+            box.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+        }
+
+        function copyExamplePrompt() {
+            if (!exBuilt) return;
+            const text = document.getElementById('result-out').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const f = document.getElementById('ex-copy-flash');
+                f.style.opacity = '1';
+                clearTimeout(f._t);
+                f._t = setTimeout(() => f.style.opacity = '0', 3000);
+            });
+        }
+
+        /* ── NAV HIGHLIGHT ── */
+        function updateNav() {
+            const sections = ['what', 'steps', 'modes', 'example'];
+            const links = document.querySelectorAll('.nav-link');
+            let active = 'what';
+            sections.forEach(id => {
+                const el = document.getElementById(id);
+                if (el) {
+                    const rect = el.getBoundingClientRect();
+                    if (rect.top <= 100) active = id;
+                }
+            });
+            links.forEach(l => {
+                l.classList.toggle('active', l.getAttribute('href') === '#' + active);
+            });
+        }
+        window.addEventListener('scroll', updateNav, { passive: true });
+        updateNav();
+
+        /* Auto-expand textareas */
+        document.querySelectorAll('textarea').forEach(ta => {
+            ta.addEventListener('input', function () {
+                this.style.height = 'auto';
+                this.style.height = (this.scrollHeight) + 'px';
+            });
+        });
+    </script>
+
+</body>
+
+</html>
